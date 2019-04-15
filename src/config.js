@@ -1,4 +1,4 @@
 export default {
-  API_ENDPOINT: 'http://localhost:8000/api',
-  TOKEN_KEY: 'blogful-client-auth-token',
+  API_ENDPOINT: 'https://powerful-everglades-75884.herokuapp.com/',
+  TOKEN_KEY: process.env.TOKEN_KEY,
 }
