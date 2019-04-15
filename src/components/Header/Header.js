@@ -47,7 +47,7 @@ class Header extends Component {
       <header className="header">
         <h1>
           <Link to='/' style={{textDecoration: 'none'}}>
-            Spaced Repetition
+            Aprende Más
           </Link>
         </h1>
         {TokenService.hasAuthToken()

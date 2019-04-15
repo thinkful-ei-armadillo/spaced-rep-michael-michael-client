@@ -89,7 +89,7 @@ class RegistrationForm extends Component {
             Sign Up
           </Button>
           <br />
-          <p>Already have an account? <Link to='/login' style={{textDecoration: 'none'}}>Log In!</Link></p>
+          Already have an account? <Link to='/login' style={{textDecoration: 'none'}}>Log In!</Link>
         </footer>
       </form>
     )
