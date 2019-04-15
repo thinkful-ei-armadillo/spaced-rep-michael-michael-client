@@ -1,8 +1,10 @@
-import React, { Component } from 'react'
-import { Input, Label } from '../Form/Form'
-import AuthApiService from '../../services/auth-api-service'
-import UserContext from '../../contexts/UserContext'
-import Button from '../Button/Button'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { Input, Label } from '../Form/Form';
+import AuthApiService from '../../services/auth-api-service';
+import UserContext from '../../contexts/UserContext';
+import Button from '../Button/Button';
+import './LoginForm.css';
 
 class LoginForm extends Component {
   static defaultProps = {
@@ -54,6 +56,7 @@ class LoginForm extends Component {
           <Label htmlFor='login-username-input'>
             Username
           </Label>
+          <br />
           <Input
             ref={this.firstInput}
             id='login-username-input'
@@ -61,10 +64,12 @@ class LoginForm extends Component {
             required
           />
         </div>
+        <br />
         <div>
           <Label htmlFor='login-password-input'>
             Password
           </Label>
+          <br />
           <Input
             id='login-password-input'
             name='password'
@@ -72,9 +77,13 @@ class LoginForm extends Component {
             required
           />
         </div>
+        <br />
         <Button type='submit'>
           Login
         </Button>
+        <footer>
+          <p>Don't have an account? <Link to='/register' style={{textDecoration: 'none'}}>Sign Up!</Link></p>
+        </footer>
       </form>
     )
   }

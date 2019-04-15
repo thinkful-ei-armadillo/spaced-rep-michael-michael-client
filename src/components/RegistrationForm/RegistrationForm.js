@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import { Input, Required, Label } from '../Form/Form'
-import AuthApiService from '../../services/auth-api-service'
-import Button from '../Button/Button'
-import './RegistrationForm.css'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { Input, Required, Label } from '../Form/Form';
+import AuthApiService from '../../services/auth-api-service';
+import Button from '../Button/Button';
+import './RegistrationForm.css';
 
 class RegistrationForm extends Component {
   static defaultProps = {
@@ -48,8 +48,9 @@ class RegistrationForm extends Component {
         </div>
         <div>
           <Label htmlFor='registration-name-input'>
-            Enter your name<Required />
+            Name<Required />
           </Label>
+          <br />
           <Input
             ref={this.firstInput}
             id='registration-name-input'
@@ -57,20 +58,24 @@ class RegistrationForm extends Component {
             required
           />
         </div>
+        <br />
         <div>
           <Label htmlFor='registration-username-input'>
-            Choose a username<Required />
+            Username<Required />
           </Label>
+          <br />
           <Input
             id='registration-username-input'
             name='username'
             required
           />
         </div>
+        <br />
         <div>
           <Label htmlFor='registration-password-input'>
-            Choose a password<Required />
+            Password<Required />
           </Label>
+          <br />
           <Input
             id='registration-password-input'
             name='password'
@@ -78,12 +83,13 @@ class RegistrationForm extends Component {
             required
           />
         </div>
+        <br />
         <footer>
           <Button type='submit'>
-            Sign up
+            Sign Up
           </Button>
-          {' '}
-          <Link to='/login'>Already have an account?</Link>
+          <br />
+          <p>Already have an account? <Link to='/login' style={{textDecoration: 'none'}}>Log In!</Link></p>
         </footer>
       </form>
     )

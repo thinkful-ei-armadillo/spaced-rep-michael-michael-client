@@ -1,23 +1,23 @@
-.registration p{
+.login p{
   text-align: center;
   color: #ffd5ae;
 }
 
-.registration h2{
+.login h2{
   text-align: center;
   color: #ffd5ae;
 }
 
-.registration form{
+.login form{
   text-align: center;
   color: #ffd5ae;
 }
 
-.registration a{
+.login a{
   font-style: italic;
   color: #ffd5ae;
 }
 
-.registration a:hover{
+.login a:hover{
   color: #03eeff;
 }

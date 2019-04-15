@@ -1,0 +1,11 @@
+button{
+  background-color: #226fff;
+  border: none;
+  color: #ffd5ae;
+  padding: 15px, 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  font-family: "Ubuntu", sans-serif;
+}

@@ -1,0 +1,19 @@
+.header{
+  padding: 10px;
+  text-align: center;
+  background: #0f029e;
+  color: #ffd5ae;
+  font-size: 20px;
+}
+
+.header h1{
+  margin: 0;
+}
+
+.header a{
+  color: #ffd5ae;
+}
+
+.header nav a:hover{
+  color: #03eeff;
+}
