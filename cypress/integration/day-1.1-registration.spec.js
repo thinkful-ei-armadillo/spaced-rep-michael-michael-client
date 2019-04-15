@@ -18,7 +18,7 @@ describe(`User story: Register an account`, function() {
 
     cy.get('main section').within($section => {
       cy.get('h2')
-        .should('have.text', 'Sign up')
+        .should('have.text', 'Sign Up')
     })
   })
 
@@ -27,25 +27,25 @@ describe(`User story: Register an account`, function() {
 
     cy.get('section form').within(() => {
       cy.get('label[for=registration-name-input]')
-        .should('have.text', 'Enter your name*')
+        .should('have.text', 'Name*')
       cy.get('input#registration-name-input')
         .should('have.attr', 'type', 'text')
         .and('have.attr', 'required', 'required')
 
       cy.get('label[for=registration-username-input]')
-        .should('have.text', 'Choose a username*')
+        .should('have.text', 'Username*')
       cy.get('input#registration-username-input')
         .should('have.attr', 'type', 'text')
         .and('have.attr', 'required', 'required')
 
       cy.get('label[for=registration-password-input]')
-        .should('have.text', 'Choose a password*')
+        .should('have.text', 'Password*')
       cy.get('input#registration-password-input')
         .should('have.attr', 'type', 'password')
         .and('have.attr', 'required', 'required')
 
       cy.get('button[type=submit]')
-        .should('have.text', 'Sign up')
+        .should('have.text', 'Sign Up')
     })
   })
 

@@ -1,23 +1,15 @@
 .registration p{
   text-align: center;
-  color: #ffd5ae;
 }
 
 .registration h2{
   text-align: center;
-  color: #ffd5ae;
 }
 
 .registration form{
   text-align: center;
-  color: #ffd5ae;
 }
 
 .registration a{
   font-style: italic;
-  color: #ffd5ae;
-}
-
-.registration a:hover{
-  color: #03eeff;
 }

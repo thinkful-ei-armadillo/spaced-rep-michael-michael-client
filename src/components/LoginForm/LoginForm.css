@@ -1,23 +1,15 @@
 .login p{
   text-align: center;
-  color: #ffd5ae;
 }
 
 .login h2{
   text-align: center;
-  color: #ffd5ae;
 }
 
 .login form{
   text-align: center;
-  color: #ffd5ae;
 }
 
 .login a{
   font-style: italic;
-  color: #ffd5ae;
-}
-
-.login a:hover{
-  color: #03eeff;
 }

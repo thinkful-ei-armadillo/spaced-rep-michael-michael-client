@@ -1,8 +1,8 @@
 .header{
   padding: 10px;
   text-align: center;
-  background: #0f029e;
-  color: #ffd5ae;
+  background: #AA151B;
+  color: #ffffff;
   font-size: 20px;
 }
 
@@ -11,9 +11,9 @@
 }
 
 .header a{
-  color: #ffd5ae;
+  color: #ffffff;
 }
 
 .header nav a:hover{
-  color: #03eeff;
+  color: #ffffff;
 }
