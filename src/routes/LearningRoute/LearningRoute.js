@@ -5,15 +5,50 @@ import config from '../../config';
 class LearningRoute extends Component {
   
   state = {
-    total_score: null
+    total_score: null,
+    nextWord: [
+      {
+        original: null,
+        correct_count: null,
+        incorrect_count: null,
+      }
+  
+    ]
+    
   }
 
   componentDidMount (){
-    this.getTotalScore();
+    // this.getTotalScore();
+    this.getNextWord();
+    // this.fakeWord();
   }
 
-  getTotalScore(){
-    fetch(`${config.API_ENDPOINT}/language`, {
+  // getTotalScore(){
+  //   fetch(`${config.API_ENDPOINT}/language/head`, {
+  //     method: "GET",
+  //     headers: {
+  //       "content-type": "application/json",
+  //       "Authorization": `Bearer ${TokenService.getAuthToken()}`
+  //     }
+  //   })
+  //   .then(res => {
+  //     if(!res.ok){
+  //       return 'error';
+  //     }
+  //     return res.json();
+  //   })
+  //   .then(res => {
+  //     this.setState({
+        
+  //         total_score: res.language.total_score
+        
+  //     })
+      
+  //   })
+  // }
+
+  getNextWord(){
+    fetch(`${config.API_ENDPOINT}/language/head`, {
       method: "GET",
       headers: {
         "content-type": "application/json",
@@ -29,21 +64,35 @@ class LearningRoute extends Component {
     .then(res => {
       this.setState({
         
-          total_score: res.language.total_score
+          total_score: res.language.total_score,
+          nextWord: res.nextWord,
+          
         
       })
-      
+      //  console.log(this.state.nextWord);
+      //  console.log(this.state.nextWord[0].original);
     })
+
   }
 
   
+  
+
+
 
   render() {
     
+    
+   
+
+     const newWord  = this.state.nextWord;
+
+    // console.log(newWord);
+    
     return (
       <section>
-        <h2>Translate The Word</h2>
-        <span>Beber</span>
+        <h2>Translate The Word:</h2>
+        <span>Andar</span>
         <p>Your total score is {this.state.total_score}</p>
         <form>
         <fieldset>
@@ -54,8 +103,8 @@ class LearningRoute extends Component {
         <button type='submit'>Submit your answer</button>
         </form>
         <div className='word-results'>
-        <p>You have answered this word correctly 10 times</p>
-        <p>You have answered this word incorrectly 20 times</p>
+        <p>You have answered this word correctly {newWord[0].correct_count} times</p>
+        <p>You have answered this word incorrectly {newWord[0].incorrect_count} times</p>
         
         </div>
 

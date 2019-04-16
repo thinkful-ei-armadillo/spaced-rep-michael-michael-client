@@ -3,4 +3,4 @@ export default {
   TOKEN_KEY: process.env.TOKEN_KEY,
 }
 
-//'https://powerful-everglades-75884.herokuapp.com'
+//'https://powerful-everglades-75884.herokuapp.com/api'
