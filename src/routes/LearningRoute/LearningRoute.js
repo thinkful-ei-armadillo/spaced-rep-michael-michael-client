@@ -71,32 +71,29 @@ class LearningRoute extends Component {
 
   handleGuess = e => {
     e.preventDefault();
-    if(this.state.words[this.state.currentWord - 1].translation === this.state.guess){
-      console.log('CORRECT')
-      fetch(`${config.API_ENDPOINT}/language/guess`, {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-          "Authorization": `Bearer ${TokenService.getAuthToken()}`
-        },
-        body: {
-          word: this.state.words[this.state.currentWord - 1].id,
-          guess: 'correct'
-        }
-      })
-      .then(res => {
-        if(!res.ok){
-          return 'error';
-        }
-        return res.json();
-      })
-      .then(res => {
-        console.log(res)
-      })
-    }
-    else{
-      console.log('INCORRECT')
-    }
+    
+    console.log('CORRECT')
+    fetch(`${config.API_ENDPOINT}/language/guess`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        "Authorization": `Bearer ${TokenService.getAuthToken()}`
+      },
+      body: {
+        
+        guess: this.state.guess
+      }
+    })
+    .then(res => {
+      if(!res.ok){
+        return 'error';
+      }
+      return res.json();
+    })
+    .then(res => {
+      console.log(res)
+    })
+   
     
     // cycle through the array of words:
     // let nextWord = this.state.currentWord + 1;
