@@ -72,7 +72,6 @@ class LearningRoute extends Component {
   handleGuess = e => {
     e.preventDefault();
     
-    console.log('CORRECT')
     fetch(`${config.API_ENDPOINT}/language/guess`, {
       method: "POST",
       headers: {
@@ -80,7 +79,6 @@ class LearningRoute extends Component {
         "Authorization": `Bearer ${TokenService.getAuthToken()}`
       },
       body: {
-        
         guess: this.state.guess
       }
     })
