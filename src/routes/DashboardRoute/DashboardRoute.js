@@ -14,10 +14,11 @@ class DashboardRoute extends Component {
     },
     words: []
   }
+
   componentDidMount(){
     this.getLangWords();
   }
-  
+
   getLangWords(){
     fetch(`${config.API_ENDPOINT}/language`, {
       method: "GET",

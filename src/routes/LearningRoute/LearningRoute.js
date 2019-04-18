@@ -6,15 +6,16 @@ class LearningRoute extends Component {
   
   state = {
     total_score: null,
-    words: [{
+    word: {
       id: null,
       original: null,
       translation: null,
       correct_count: 0,
       incorrect_count: 0
-    }],
-    currentWord: 1,
-    guess: ''
+    },
+    nextWord: {},
+    guess: '',
+    isCorrect: null
   }
 
   componentDidMount (){
@@ -38,26 +39,24 @@ class LearningRoute extends Component {
     .then(res => {
       this.setState({
           total_score: res.language.total_score,
-          words: res.nextWord,
+          word: res.nextWord[0]
       })
     })
   }
 
   showWord(){
-    for(let i = (this.state.currentWord - 1); i < this.state.currentWord; i++){
       return(
         <div className="currentWord">
-          <span>{this.state.words[i].original}</span>
+          <span>{this.state.word.original}</span>
           <p>
-            You have answered this word correctly {this.state.words[i].correct_count} times.
+            You have answered this word correctly {this.state.word.correct_count} times.
           </p>
           <p>
-            You have answered this word incorrectly {this.state.words[i].incorrect_count} times.
+            You have answered this word incorrectly {this.state.word.incorrect_count} times.
           </p>
         </div>
       )
     }
-  }
 
   handleChange = e => {
     e.preventDefault();
@@ -71,16 +70,14 @@ class LearningRoute extends Component {
 
   handleGuess = e => {
     e.preventDefault();
-    
+    const stateGuess = this.state.guess;
     fetch(`${config.API_ENDPOINT}/language/guess`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
         "Authorization": `Bearer ${TokenService.getAuthToken()}`
       },
-      body: {
-        guess: this.state.guess
-      }
+      body: JSON.stringify({ guess: stateGuess })
     })
     .then(res => {
       if(!res.ok){
@@ -89,18 +86,55 @@ class LearningRoute extends Component {
       return res.json();
     })
     .then(res => {
-      console.log(res)
+      this.setState({
+        total_score: res.totalScore,
+        nextWord: {
+          original: res.nextWord,
+          correct_count: res.wordCorrectCount,
+          incorrect_count: res.wordIncorrectCount
+        },
+        isCorrect: res.isCorrect
+      })
+      this.showResults();
     })
-   
-    
-    // cycle through the array of words:
-    // let nextWord = this.state.currentWord + 1;
-    // if(nextWord <= this.state.words.length){
-    //   this.setState({currentWord: nextWord});
-    // }
-    // else{
-    //   this.setState({currentWord: 1})
-    // }
+  }
+
+  changeWord(){
+    this.setState({
+      word: {
+        id: this.state.nextWord.original.id,
+        original: this.state.nextWord.original.original,
+        translation: this.state.nextWord.original.translation,
+        correct_count: this.state.nextWord.original.correct_count,
+        incorrect_count: this.state.nextWord.original.incorrect_count
+      },
+      isCorrect: null
+    })
+  }
+
+  showResults(){
+    if(this.state.isCorrect === true){
+      return(
+        <div className="results">
+          <h2>You got it right!</h2>
+          <p>The answer was {this.state.guess}</p>
+          <p>The next word is {this.state.nextWord.original.original}</p>
+          <button type="button" onClick={() => this.changeWord()}>Next Word</button>
+        </div>
+      )
+    }
+    if(this.state.isCorrect === false){
+      return(
+        <div className="results">
+          <h2>You got it wrong.</h2>
+          <p>The answer was {this.state.word.translation}</p>
+          <button type="button" onClick={() => this.changeWord()}>Next Word</button>
+        </div>
+      )
+    }
+    if(this.state.isCorrect === null){
+      return;
+    }
   }
 
   render() {
@@ -115,8 +149,9 @@ class LearningRoute extends Component {
             <input type='text' name='nextword' id="userGuess" onChange={this.handleChange} required></input>
           </fieldset>
           <button type='reset'>Reset</button>
-          <button type='submit'>Submit Your Guess</button>
+          <button type='submit'>Submit Your Guess</button> {/* if isCorrect !== null, disable button */}
         </form>
+        {this.showResults()}
       </section>
     );
   }
