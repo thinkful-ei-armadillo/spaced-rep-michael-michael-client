@@ -37,9 +37,14 @@ class LearningRoute extends Component {
       return res.json();
     })
     .then(res => {
+      console.log(res);
       this.setState({
-          total_score: res.language.total_score,
-          word: res.nextWord[0]
+          total_score: res.language ? res.language.total_score : res.totalScore,
+          word: Array.isArray(res.nextWord) ? res.nextWord[0] : {
+            original: res.nextWord,
+            correct_count: res.wordCorrectCount,
+            incorrect_count: res.wordIncorrectCount
+          }
       })
     })
   }
@@ -53,12 +58,9 @@ class LearningRoute extends Component {
   showCounts(){
     return(
       <div className="wordCounts">
-        <p>
           You have answered this word correctly {this.state.word.correct_count} times.
-        </p>
-        <p>
+          <br />
           You have answered this word incorrectly {this.state.word.incorrect_count} times.
-        </p>
       </div>
     )
   }
@@ -120,7 +122,7 @@ class LearningRoute extends Component {
   showResults(){
     if(this.state.isCorrect === true){
       return(
-        <div className="results">
+        <div className="DisplayFeedback">
           <h2>You got it right!</h2>
           <p>The answer was {this.state.guess}</p>
           <p>The next word is {this.state.nextWord.original.original}</p>
@@ -130,9 +132,9 @@ class LearningRoute extends Component {
     }
     if(this.state.isCorrect === false){
       return(
-        <div className="results">
+        <div className="DisplayFeedback">
           <h2>You got it wrong.</h2>
-          <p>The answer was {this.state.word.translation}</p>
+          <p>The correct translation for {this.state.word.original} was {this.state.word.translation} and you chose {this.state.guess}</p>
           <button type="button" onClick={() => this.changeWord()}>Next Word</button>
         </div>
       )
@@ -147,14 +149,16 @@ class LearningRoute extends Component {
       <section>
         <h2>Translate The Word:</h2>
         {this.showWord()}
+        <div className="DisplayScore">
+          <p>Total Score: {this.state.total_score}</p>
+        </div>
         {this.showCounts()}
-        <p>Total Score: {this.state.total_score}</p>
         <form onSubmit={(e) => {this.handleGuess(e)}}>
           <fieldset>
-            <label htmlFor='nextword'>What's the translation for this word?</label>
-            <input type='text' name='nextword' id="userGuess" onChange={this.handleChange} required></input>
+            <label htmlFor='learn-guess-input'>What's the translation for this word?</label>
+            <input type='text' name='learn-guess-input' id='learn-guess-input' onChange={this.handleChange} required></input>
           </fieldset>
-          <button type='reset'>Reset</button>
+          {/* <button type='reset'>Reset</button> */}
           <button type='submit'>Submit Your Guess</button> {/* if isCorrect !== null, disable button */}
         </form>
         {this.showResults()}
