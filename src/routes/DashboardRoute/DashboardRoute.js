@@ -51,14 +51,15 @@ class DashboardRoute extends Component {
     const wordMap = this.state.words.map((word) => {
       return (
         <li key={word.id}><h4>{word.original}</h4>
+         
           Right: {word.correct_count}
           <br />
           Wrong: {word.incorrect_count}</li>)
     })
     return (
       <section className="dashboard">
-        <h2>{this.state.language.name}</h2>
-        <p>Total Correct Answers: {this.state.language.total_score}</p>
+        <h2 id='language'>{this.state.language.name}</h2>
+        <p id='total-score'>Total Correct Answers: {this.state.language.total_score}</p>
         <h3>Words to Practice:</h3>
         <ul>
           {wordMap}
