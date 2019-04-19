@@ -1,4 +1,16 @@
-# Spaced Repetition Capstone
+# Aprende Más - Spaced Repetition Capstone
+
+## Purpose
+This app was created to help a user memorize a set list of Spanish vocabulary words.
+
+## Tech Stack
+React, Cypress, Express, Node, PostgreSQL
+
+## Features
+Language learning with spaced repetition, database built around a linked list.
+
+## API
+https://github.com/thinkful-ei-armadillo/spaced-rep-michael-michael-server
 
 ## Setup
 
