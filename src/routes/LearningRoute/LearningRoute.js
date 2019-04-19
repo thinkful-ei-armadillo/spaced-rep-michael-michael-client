@@ -45,18 +45,23 @@ class LearningRoute extends Component {
   }
 
   showWord(){
-      return(
-        <div className="currentWord">
-          <span>{this.state.word.original}</span>
-          <p>
-            You have answered this word correctly {this.state.word.correct_count} times.
-          </p>
-          <p>
-            You have answered this word incorrectly {this.state.word.incorrect_count} times.
-          </p>
-        </div>
-      )
-    }
+    return(
+        <span>{this.state.word.original}</span>
+    )
+  }
+
+  showCounts(){
+    return(
+      <div className="wordCounts">
+        <p>
+          You have answered this word correctly {this.state.word.correct_count} times.
+        </p>
+        <p>
+          You have answered this word incorrectly {this.state.word.incorrect_count} times.
+        </p>
+      </div>
+    )
+  }
 
   handleChange = e => {
     e.preventDefault();
@@ -142,6 +147,7 @@ class LearningRoute extends Component {
       <section>
         <h2>Translate The Word:</h2>
         {this.showWord()}
+        {this.showCounts()}
         <p>Total Score: {this.state.total_score}</p>
         <form onSubmit={(e) => {this.handleGuess(e)}}>
           <fieldset>
