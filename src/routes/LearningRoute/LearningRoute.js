@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import TokenService from "../../services/token-service";
 import config from '../../config';
+import './LearningRoute.css';
+
 
 class LearningRoute extends Component {
   
@@ -51,7 +53,7 @@ class LearningRoute extends Component {
 
   showWord(){
     return(
-        <span>{this.state.word.original}</span>
+        <span><i>{this.state.word.original}</i></span>
     )
   }
 
@@ -146,7 +148,7 @@ class LearningRoute extends Component {
 
   render() {
     return (
-      <section>
+      <section className="learning-page">
         <h2>Translate The Word:</h2>
         {this.showWord()}
         <div className="DisplayScore">
