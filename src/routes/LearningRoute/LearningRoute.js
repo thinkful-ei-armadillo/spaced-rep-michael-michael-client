@@ -146,6 +146,15 @@ class LearningRoute extends Component {
     }
   }
 
+  displaySubmitBtn(){
+    if(this.state.isCorrect === null){
+      return (<button type='submit'>Submit Your Guess</button>)
+    }
+    if(this.state.isCorrect === true || this.state.isCorrect === false){
+      return null;
+    }
+  }
+
   render() {
     return (
       <section className="learning-page">
@@ -160,8 +169,7 @@ class LearningRoute extends Component {
             <label htmlFor='learn-guess-input'>What's the translation for this word?</label>
             <input type='text' name='learn-guess-input' id='learn-guess-input' onChange={this.handleChange} required></input>
           </fieldset>
-          {/* <button type='reset'>Reset</button> */}
-          <button type='submit'>Submit Your Guess</button> {/* if isCorrect !== null, disable button */}
+          {this.displaySubmitBtn}
         </form>
         {this.showResults()}
       </section>
