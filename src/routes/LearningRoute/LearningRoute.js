@@ -169,7 +169,7 @@ class LearningRoute extends Component {
             <label htmlFor='learn-guess-input'>What's the translation for this word?</label>
             <input type='text' name='learn-guess-input' id='learn-guess-input' onChange={this.handleChange} required></input>
           </fieldset>
-          {this.displaySubmitBtn}
+          {this.displaySubmitBtn()}
         </form>
         {this.showResults()}
       </section>
