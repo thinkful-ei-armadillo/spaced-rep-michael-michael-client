@@ -9,6 +9,9 @@ React, Cypress, Express, Node, PostgreSQL
 ## Features
 Language learning with spaced repetition, database built around a linked list.
 
+## Test Account
+To log in using a demo account, enter `testUser` in the username field and `P@ssw0rd` in the password field.
+
 ## API
 https://github.com/thinkful-ei-armadillo/spaced-rep-michael-michael-server
 
