@@ -77,6 +77,10 @@ class LearningRoute extends Component {
     this.setState({guess: guess});
   }
 
+  clearForm = () => {
+    document.getElementById("word-guess").reset();
+  }
+
   handleGuess = e => {
     e.preventDefault();
     const stateGuess = this.state.guess;
@@ -105,6 +109,7 @@ class LearningRoute extends Component {
         isCorrect: res.isCorrect
       })
       this.showResults();
+      this.clearForm();
     })
   }
 
@@ -164,7 +169,7 @@ class LearningRoute extends Component {
           <p>Total Score: {this.state.total_score}</p>
         </div>
         {this.showCounts()}
-        <form onSubmit={(e) => {this.handleGuess(e)}}>
+        <form id='word-guess' onSubmit={(e) => {this.handleGuess(e)}}>
           <fieldset>
             <label htmlFor='learn-guess-input'>What's the translation for this word?</label>
             <input type='text' name='learn-guess-input' id='learn-guess-input' onChange={this.handleChange} required></input>
